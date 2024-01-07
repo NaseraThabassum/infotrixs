@@ -7,10 +7,6 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy/OO8a7eQh9NBa9c/Fb3–nIbAL2uV++"
         crossorigin="anonymous">
     <style>
-        body {
-            padding: 20px;
-            background-color: #f8f9fa;
-        }
 
         h2 {
             color: #007bff;
@@ -59,6 +55,22 @@
             border-radius: 5px;
         }
 
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            width: 70%;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color:rgba(176, 219, 225, 2.7);
+            border-radius: 10px;
+        }
+
         a:hover {
             text-decoration: none;
         }
@@ -78,32 +90,34 @@
     </style>
 </head>
 
-<body>
-    <div class="container">
-        <h2>Search Quotes by Author</h2>
+<body style="background-color: rgba(173, 216, 230, 0.7); padding: 20px;">
+    <div class="container card-container">
+        <div class="card">
+            <h2>Search Quotes by Author</h2>
 
-        <form action="/search-results" method="get" class="form-inline">
-            <label for="author" class="mr-2">Author:</label>
-            <input type="text" id="author" name="author" class="form-control" required>
-            <button type="submit" class="btn btn-primary">Search</button>
-        </form>
+            <form action="/search-results" method="get" class="form-inline">
+                <b style="color:blue"><label for="author" class="mr-2">Author:</label></b>
+                <input type="text" id="author" name="author" class="form-control" required>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
 
-        <p th:if="${errorMessage != null}">Error: <span th:text="${errorMessage}"></span></p>
+            <p th:if="${errorMessage != null}">Error: <span th:text="${errorMessage}"></span></p>
 
-        <ul th:if="${quotesByAuthor != null && quotesByAuthor.size() > 0}">
-            <li th:each="quote : ${quotesByAuthor}" class="mb-3">
-                <div class="card">
-                    <div class="card-body">
-                        <p class="card-text" th:text="${quote.content + ' - ' + quote.author}"></p>
+            <ul th:if="${quotesByAuthor != null && quotesByAuthor.size() > 0}">
+                <li th:each="quote : ${quotesByAuthor}" class="mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text" th:text="${quote.content + ' - ' + quote.author}"></p>
+                        </div>
                     </div>
-                </div>
-            </li>
-        </ul>
+                </li>
+            </ul>
 
-        <div>
-            <a th:href="@{/}">
-                <button type="button" class="btn btn-secondary">Back to Home</button>
-            </a>
+            <div>
+                <a th:href="@{/}">
+                    <button type="button" class="btn btn-secondary">Back to Home</button>
+                </a>
+            </div>
         </div>
     </div>
 
