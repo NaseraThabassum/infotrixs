@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy/OO8a7eQh9NBa9c/Fb3–nIbAL2uV++"
+        crossorigin="anonymous">
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="text-center">
+            <h2>Welcome to Quote of the Day</h2>
+        </div>
+
+        <div>
+            <h2>All Quotes</h2>
+            <ul>
+                <li th:each="quote : ${allQuotes}">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text" th:text="${quote.content + ' - ' + quote.author}"></p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Button to navigate to Search page -->
+        <a th:href="@{/search}">
+            <div class="text-center">
+                <h2>Search Quote By Author!</h2>
+                <button class="btn btn-primary">Search</button>
+            </div>
+        </a>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js for enhanced functionality -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-y5cecx5EdW4jcr7HSUpBX0tP1fSpaVN3ss+c/sL6Uq2JCmU5TECCZlJOKnI/u8OK"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy/OO8a7eQh9NBa9c/Fb3–nIbAL2uV++"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

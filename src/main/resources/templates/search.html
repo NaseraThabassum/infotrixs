@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Search Quotes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy/OO8a7eQh9NBa9c/Fb3–nIbAL2uV++"
+        crossorigin="anonymous">
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            color: red;
+            margin-top: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        button[type="button"] {
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="button"]:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Search Quotes by Author</h2>
+
+        <form action="/search-results" method="get" class="form-inline">
+            <label for="author" class="mr-2">Author:</label>
+            <input type="text" id="author" name="author" class="form-control" required>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        <p th:if="${errorMessage != null}">Error: <span th:text="${errorMessage}"></span></p>
+
+        <ul th:if="${quotesByAuthor != null && quotesByAuthor.size() > 0}">
+            <li th:each="quote : ${quotesByAuthor}" class="mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text" th:text="${quote.content + ' - ' + quote.author}"></p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <div>
+            <a th:href="@{/}">
+                <button type="button" class="btn btn-secondary">Back to Home</button>
+            </a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js for enhanced functionality -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-y5cecx5EdW4jcr7HSUpBX0tP1fSpaVN3ss+c/sL6Uq2JCmU5TECCZlJOKnI/u8OK"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy/OO8a7eQh9NBa9c/Fb3–nIbAL2uV++"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
